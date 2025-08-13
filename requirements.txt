@@ -1,0 +1,2 @@
+streamlit
+pandas # CSV 처리를 위해 추가 
