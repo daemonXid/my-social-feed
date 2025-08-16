@@ -2,6 +2,7 @@
 import pandas as pd
 from .models import Post
 import os
+import datetime #timestamp를 위해 추가
 
 POSTS_FILEPATH = "data/posts.csv"
 
@@ -26,9 +27,9 @@ def load_posts() -> pd.DataFrame:
     return posts_df
 
 
-LIKES_FILEPATH = "data/likes.csv"
+LIKES_FILEPATH = "data/likes.csv"                                  # '좋아요' 데이터를 저장할 파일 경로
 
-def save_like(post_id: str, author: str):
+def save_like(post_id: str, author: str):                 
     """'좋아요' 데이터를 CSV 파일에 추가합니다."""
     if not os.path.exists(LIKES_FILEPATH):
         df = pd.DataFrame([{'post_id': post_id, 'author': author}])

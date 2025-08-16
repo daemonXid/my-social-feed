@@ -22,11 +22,13 @@ def display_feed(posts_df: pd.DataFrame):
         # 각 게시글을 순회하며 표시
         for index, row in posts_df.iterrows():
             with st.container(border=True):
+                post_id = row['post_id']
+
                 st.write(f"**작성자:** {row['author']}")
                 st.write(f"**내용:** {row['content']}")
                 st.caption(f"작성 시각: {row['timestamp']}")
-                # 여기에 나중에 좋아요/리트윗 버튼이 추가됩니다.
-
+                
+                # '좋아요' 기능 UI
                 like_count = get_like_count(post_id)
 
                 # st.columns를 사용해 버튼과 텍스트를 나란히 배치
