@@ -4,7 +4,7 @@ from .models import Post
 import os
 import datetime #timestamp를 위해 추가
 
-POSTS_FILEPATH = "data/posts.csv"
+POSTS_FILEPATH = "data/posts.csv"                       # 게시글 데이터를 저장할 파일 경로
 
 def save_post(post: Post):
     """새로운 Post 객체를 CSV 파일에 추가합니다."""
@@ -27,7 +27,7 @@ def load_posts() -> pd.DataFrame:
     return posts_df
 
 
-LIKES_FILEPATH = "data/likes.csv"                                  # '좋아요' 데이터를 저장할 파일 경로
+LIKES_FILEPATH = "data/likes.csv"                    # '좋아요' 데이터를 저장할 파일 경로
 
 def save_like(post_id: str, author: str):                 
     """'좋아요' 데이터를 CSV 파일에 추가합니다."""
@@ -47,3 +47,33 @@ def get_like_count(post_id: str) -> int:
     # post_id가 일치하는 행의 개수를 센다.
     count = likes_df[likes_df['post_id'] == post_id].shape[0]
     return count
+
+
+RETWEETS_FILEPATH = "data/retrweets.csv"                 # '리트윗' 데이터를 저장할 파일 경로
+
+def add_retweet(original_post_id: str, retweet_user_id: str):
+    """'리트윗' 데이터를 CSV 파일에 추가합니다."""
+    new_retweet = {
+        'original_post_id': [original_post_id],
+        'retweet_user_id': [retweet_user_id],
+        'timestamp': [datetime.datetime.now()]
+    }
+    new_retweet_df = pd.DataFrame(new_retweet)
+
+    # 파일이 없으면 헤더와 함께 새로 생성
+    if not os.path.exists(RETWEETS_FILEPATH):
+        new_retweet_df.to_csv(RETWEETS_FILEPATH, index=False)
+    # 파일이 있으면 기존 데이터에 추가 (헤더 없이)
+    else:
+        new_retweet_df.to_csv(RETWEETS_FILEPATH, mode='a', header=False, index=False)
+
+def load_retweets() -> pd.DataFrame:
+    """CSV 파일에서 모든 리트윗 기록을 불러와 DataFrame으로 반환합니다."""
+    if not os.path.exists(RETWEETS_FILEPATH) or os.path.getsize(RETWEETS_FILEPATH) == 0:
+        return pd.DataFrame(columns=['original_post_id', 'retweet_user_id', 'timestamp'])
+    
+    retweets_df = pd.read_csv(RETWEETS_FILEPATH)
+    return retweets_df
+
+
+
