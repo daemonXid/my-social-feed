@@ -49,7 +49,7 @@ def get_like_count(post_id: str) -> int:
     return count
 
 
-RETWEETS_FILEPATH = "data/retrweets.csv"                 # '리트윗' 데이터를 저장할 파일 경로
+RETWEETS_FILEPATH = "data/retweets.csv"                 # '리트윗' 데이터를 저장할 파일 경로
 
 def add_retweet(original_post_id: str, retweet_user_id: str):
     """'리트윗' 데이터를 CSV 파일에 추가합니다."""
