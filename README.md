@@ -12,10 +12,10 @@
 
 -    사용자 인증 : 회원가입 및 로그인 기능을 통해 사용자별로 서비스를 이용할 수 있습니다.
 -    게시글 작성 및 조회 : 사용자는 텍스트 기반의 게시글을 작성하고, 시간순으로 정렬된 피드에서 모든 게시글을 확인할 수 있습니다.
--    상호작용 기능 :
-    -    좋아요 : 각 게시글에 '좋아요'를 누를 수 있습니다.
-    -    리트윗 : 다른 사용자의 게시글을 자신의 피드에 공유(리트윗)할 수 있습니다.
-    -    댓글 : 각 게시글에 댓글을 작성할 수 있으며, 이미지나 YouTube 영상 링크를 첨부하여 공유할 수 있습니다.
+-    <상호작용 기능>
+-    좋아요 : 각 게시글에 '좋아요'를 누를 수 있습니다.
+-    리트윗 : 다른 사용자의 게시글을 자신의 피드에 공유(리트윗)할 수 있습니다.
+-    댓글 : 각 게시글에 댓글을 작성할 수 있으며, 이미지나 YouTube 영상 링크를 첨부하여 공유할 수 있습니다.
 
 ## 🛠️ 기술 스택
 
@@ -27,26 +27,21 @@
 
 ## 🚀 로컬에서 실행하기
 
-1.   저장소 복제: 
-    ```bash
+1.   저장소 복제:
+
     git clone [https://github.com/daemonXid/my-social-feed.git](https://github.com/daemonXid/my-social-feed.git)
     cd my-social-feed
-    ```
 
-2.   Conda 가상환경 생성 및 활성화: 
-    ```bash
-    # 'my-social-feed' 라는 이름의 환경을 생성합니다.
+2.   Conda 가상환경 생성 및 활성화:
+
     conda create -n my-social-feed python=3.10 -y
     conda activate my-social-feed
-    ```
 
-3.   필요한 패키지 설치: 
-    ```bash
+3.   필요한 패키지 설치:
+
     pip install -r requirements.txt
-    ```
 
-4.   Streamlit 앱 실행: 
-    ```bash
+4.   Streamlit 앱 실행:
+
     streamlit run app.py
-    ```
----
+    
