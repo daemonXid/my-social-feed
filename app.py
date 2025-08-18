@@ -12,7 +12,7 @@ from src.my_social_feed import ui_components
 
 st.set_page_config(page_title="My Social Feed", layout="centered")
 
-# --- 1. 로그인 상태 확인 ---
+# --- 1. 로그인 상태 확인 ---  
 # st.session_state에 'user_id'가 없으면 로그인하지 않은 상태로 간주합니다.
 if 'user_id' not in st.session_state:
     ui_components.display_login_form()
