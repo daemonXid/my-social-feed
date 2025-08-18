@@ -34,7 +34,6 @@
 
 2.   Conda 가상환경 생성 및 활성화:
 
-    # 'my-social-feed' 라는 이름의 환경을 생성합니다.
     conda create -n my-social-feed python=3.10 -y
     conda activate my-social-feed
 
