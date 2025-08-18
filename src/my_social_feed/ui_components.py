@@ -6,6 +6,18 @@ from .data_manager import (
     get_like_count, save_like, add_retweet, 
     save_comment, load_comments, create_user, get_user
 )
+import re                       # youtube URL 검증을 위한 모듈
+
+# --- YouTube 비디오 ID를 추출하는 헬퍼 함수 ---
+def get_youtube_video_id(url: str):
+    """YouTube URL에서 비디오 ID를 추출합니다."""
+    if url is None:
+        return None
+    # 표준, 단축, 임베드 URL 등 다양한 형식을 지원하는 정규표현식
+    regex = r"(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})"
+    match = re.search(regex, url)
+    return match.group(1) if match else None
+
 
 def display_post_editor():
     """게시글 작성을 위한 UI 컴포넌트를 표시합니다."""
@@ -64,8 +76,12 @@ def display_feed(feed_df: pd.DataFrame):
                         if pd.notna(c_row['media_url']) and c_row['media_url']:
                             # if문 다음 블록은 반드시 들여쓰기 되어야 합니다.
                             media_url = c_row['media_url']
-                            if 'youtube.com' in media_url or 'youtu.be' in media_url:
-                                st.video(media_url)
+                            
+                            video_id = get_youtube_video_id(media_url)
+                            if video_id:
+                                # st.video 대신 iframe으로 직접 임베드
+                                embed_url = f"https://www.youtube.com/embed/{video_id}"
+                                st.markdown(f'<iframe width="560" height="315" src="{embed_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', unsafe_allow_html=True)
                             elif any(media_url.lower().endswith(ext) for ext in ['.png', '.jpg', '.jpeg', '.gif']):
                                 st.image(media_url)
                                 
