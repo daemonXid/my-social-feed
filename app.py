@@ -2,12 +2,13 @@
 
 import streamlit as st
 import pandas as pd
-from my_social_feed.data_manager import (
+
+from src.my_social_feed.data_manager import (
     load_posts, save_post, load_retweets,
     save_like, add_retweet, save_comment, load_comments
 )
-from my_social_feed.models import Post
-from my_social_feed import ui_components
+from src.my_social_feed.models import Post
+from src.my_social_feed import ui_components
 
 st.set_page_config(page_title="My Social Feed", layout="centered")
 
