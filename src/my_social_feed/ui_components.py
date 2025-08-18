@@ -102,8 +102,10 @@ def display_feed(feed_df: pd.DataFrame):
 
 def display_login_form():
     """로그인 및 회원가입 폼을 표시합니다."""
-    st.header("로그인 / 회원가입")
-    
+    st.header("안녕하세요! My Social Feed에 오신 것을 환영합니다. 👋")
+    st.write("간단한 소셜 미디어 기능을 사용해보세요.")
+    st.markdown("---") # 시각적인 구분선
+
     login_tab, signup_tab = st.tabs(["로그인", "회원가입"])
 
     with login_tab:
@@ -111,7 +113,7 @@ def display_login_form():
             login_id = st.text_input("아이디")
             login_password = st.text_input("비밀번호", type="password")
             login_submitted = st.form_submit_button("로그인")
-            
+
             if login_submitted:
                 user_data = get_user(login_id)
                 if user_data is not None and user_data['password'] == login_password:
@@ -131,6 +133,13 @@ def display_login_form():
                     st.success("회원가입이 완료되었습니다. 로그인 탭에서 로그인해주세요.")
                 else:
                     st.error("이미 존재하는 아이디입니다.")
+
+    st.markdown("---") # 폼 아래 또 다른 구분선
+    # 이미지 주소를 직접 넣어줍니다.
+    image_url = "https://cdn.pixabay.com/photo/2025/08/02/17/47/cat-9751060_1280.jpg"
+    st.image(image_url, caption="Explore and Connect!", use_container_width=True)
+    st.info("본 앱은 Streamlit 학습용으로 제작되었습니다.")
+
 
 def display_sidebar_profile():
     """사이드바에 사용자 프로필과 로그아웃 버튼을 표시합니다."""
