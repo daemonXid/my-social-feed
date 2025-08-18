@@ -29,28 +29,20 @@
 
 1.   저장소 복제:
 
-    ```bash
     git clone [https://github.com/daemonXid/my-social-feed.git](https://github.com/daemonXid/my-social-feed.git)
     cd my-social-feed
-    ```
 
 2.   Conda 가상환경 생성 및 활성화:
 
-    ```bash
     # 'my-social-feed' 라는 이름의 환경을 생성합니다.
     conda create -n my-social-feed python=3.10 -y
     conda activate my-social-feed
-    ```
 
 3.   필요한 패키지 설치:
 
-    ```bash
     pip install -r requirements.txt
-    ```
 
 4.   Streamlit 앱 실행:
 
-    ```bash
     streamlit run app.py
-    ```
----
+    
